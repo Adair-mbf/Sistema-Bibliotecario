@@ -1,13 +1,16 @@
 import java.util.Scanner;
 
+import Usuario.Usuario;
+
 public class Main {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
+        Biblioteca biblioteca = new Biblioteca("Suap", "Rua faria lima, quadra 5 lote 3, Itumbiara");
         byte opcao;
         do{
             System.out.println("O que deseja fazer?");
-            System.out.println("1 - Registrar publicacao");
-            System.out.println("2 - Registrar usuário");
+            System.out.println("1 - Cadastrar publicacao");
+            System.out.println("2 - Cadastrar usuário");
             System.out.println("3 - Renovar empréstimo de usuário");
             System.out.println("0 - Sair");
             opcao = leitor.nextByte();
@@ -23,9 +26,23 @@ public class Main {
                     System.out.println("3 - Tese");
                     byte tipoPub = leitor.nextByte();
                     switch (tipoPub) {
-                        case 1:
-                            
+                        case 1:{
+                            System.out.println("Digite o título:");
+                            String titulo = leitor.nextLine();
+                            System.out.println("Digite a data de publicação:");
+                            String dataPublicacao = leitor.nextLine();
+                            System.out.println("Digite as referencias:");
+                            String referencia = leitor.nextLine();
+                            System.out.println("Digite o valor da multa:");
+                            double multa = leitor.nextDouble();
+                            System.out.println("Digite a isbn:");
+                            String isbn = leitor.nextLine();
+                            System.out.println("Digite o nome da editora:");
+                            String editora = leitor.nextLine();
+                            System.out.println("Digite o número da edição:");
+                            int edicao = leitor.nextInt();
                             break;
+                        }
                         case 2:
 
                             break;
@@ -43,9 +60,19 @@ public class Main {
                     System.out.println("2 - Usuário especial");
                     byte tipoUsu = leitor.nextByte();
                     switch (tipoUsu) {
-                        case 1:
-                            
+                        case 1:{
+                            System.out.println("Digite o nome do usuário:");
+                            String nome = leitor.nextLine();
+                            System.out.println("Digite o telefone do usuário:");
+                            String telefone = leitor.nextLine();
+                            System.out.println("Digite o email do usuário:");
+                            String email = leitor.nextLine();
+                            System.out.println("Digite o cpf do usuário:");
+                            String cpf = leitor.nextLine();
+                            Usuario usuario = new Usuario(nome, telefone, email, cpf);
+                            biblioteca.cadastrarUsuario(usuario);
                             break;
+                        }
                         case 2:
 
                             break;
@@ -53,6 +80,15 @@ public class Main {
                             System.out.println("Opção inválida!");
                             break;
                     }
+                case 3:{
+                    System.out.println("Digite o cpf do usuário");
+                    String cpf = leitor.nextLine();
+                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    if(usuario != null){
+                        
+                    }
+                break;
+                }
                 default:
                     System.out.println("Opção inválida!");
                     break;

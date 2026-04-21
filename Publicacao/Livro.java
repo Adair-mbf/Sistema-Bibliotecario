@@ -8,10 +8,9 @@ public class Livro extends Publicacao{
     private int edicao;
 
     public Livro(String titulo, String dataPublicacao, ArrayList<Publicacao> referencias, ArrayList<Autor> autores, String isbn, String editora, int edicao) {
-        super(titulo, dataPublicacao, referencias, autores);
+        super(titulo, dataPublicacao, referencias, autores, edicao);
         this.isbn = isbn;
         this.editora = editora;
         this.edicao = edicao;
     }
-    
 }

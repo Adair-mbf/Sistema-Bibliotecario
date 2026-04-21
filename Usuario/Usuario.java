@@ -1,5 +1,6 @@
 package Usuario;
 
+import Publicacao.Publicacao;
 import java.util.ArrayList;
 
 public class Usuario {
@@ -17,7 +18,14 @@ public class Usuario {
         this.telefone = telefone;
         this.email = email;
         this.cpf = cpf;
+        this.emprestimos = new ArrayList<>();
+        this.renovacoesEmprestimo = 0;
+        this.multa = 0;
     }
+    public String getCpf() {
+        return cpf;
+    }
+
     public void pagarMulta(){
         
     }

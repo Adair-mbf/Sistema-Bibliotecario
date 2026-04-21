@@ -7,14 +7,14 @@ public abstract class Publicacao {
     private String dataPublicacao;
     private ArrayList<Publicacao> referencias;
     private ArrayList<Autor> autores;
-    private double valorMulta;
+    private double multa;
 
-    public Publicacao(String titulo, String dataPublicacao, ArrayList<Publicacao> referencias, ArrayList<Autor> autores) {
+    public Publicacao(String titulo, String dataPublicacao, ArrayList<Publicacao> referencias, ArrayList<Autor> autores, double multa) {
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;
         this.referencias = referencias;
         this.autores = autores;
-        this.valorMulta = valorMulta;
+        this.multa = multa;
     }
 
 }
