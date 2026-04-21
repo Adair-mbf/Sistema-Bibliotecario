@@ -9,8 +9,8 @@ public class Usuario {
     private String email;
     private String cpf;
     private ArrayList<Publicacao> emprestimos;
-    private static int renovacoesEmprestimo;
-    private static double multa;
+    private int renovacoesEmprestimo;
+    private double multa;
 
     
     public Usuario(String nome, String telefone, String email, String cpf) {

@@ -1,5 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import Publicacao.Autor;
+import Publicacao.Livro;
 import Usuario.Usuario;
 
 public class Main {
@@ -31,8 +34,11 @@ public class Main {
                             String titulo = leitor.nextLine();
                             System.out.println("Digite a data de publicação:");
                             String dataPublicacao = leitor.nextLine();
-                            System.out.println("Digite as referencias:");
-                            String referencia = leitor.nextLine();
+                            System.out.println("Digite a quantidade de referencias:");
+                            int qntdReferencia = leitor.nextInt();
+                            for(int i = 0; i < qntdReferencia; i++){
+
+                            }
                             System.out.println("Digite o valor da multa:");
                             double multa = leitor.nextDouble();
                             System.out.println("Digite a isbn:");
@@ -41,6 +47,19 @@ public class Main {
                             String editora = leitor.nextLine();
                             System.out.println("Digite o número da edição:");
                             int edicao = leitor.nextInt();
+                            ArrayList<Autor> autores = new ArrayList<>();
+                            System.out.println("Digite a quantidade de autores:");
+                            int qntautores = leitor.nextInt();
+                            for(int i = 0; i < qntautores; i++){
+                                System.out.println("Digite o nome do autor:");
+                                String nome = leitor.nextLine();
+                                System.out.println("Digite a titulação do autor");
+                                String titulacao = leitor.nextLine();
+                                Autor autor = new Autor(nome, titulacao);
+                                autores.add(autor);
+                            }
+                            Livro livro = new Livro(titulo, dataPublicacao, null, autores, isbn, editora, edicao);
+                            biblioteca.cadastrarPublicacao(livro);
                             break;
                         }
                         case 2:
