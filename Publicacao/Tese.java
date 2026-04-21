@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Tese extends Publicacao{
     private int numeroPaginas;
     private String resumo;
-    private String autor;
     private String dataDefesa;
     private String instituicao;
 
