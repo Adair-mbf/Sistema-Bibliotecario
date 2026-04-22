@@ -3,6 +3,8 @@ package Publicacao;
 import java.util.ArrayList;
 
 public abstract class Publicacao {
+    private int id;
+    private static int geradorId = 1000;
     private String titulo;
     private String dataPublicacao;
     private ArrayList<Publicacao> referencias;
@@ -10,6 +12,7 @@ public abstract class Publicacao {
     private double multa;
 
     public Publicacao(String titulo, String dataPublicacao, ArrayList<Publicacao> referencias, ArrayList<Autor> autores, double multa) {
+        this.id = geradorId++;
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;
         this.referencias = referencias;
@@ -17,4 +20,7 @@ public abstract class Publicacao {
         this.multa = multa;
     }
 
+    public int getId() {
+        return id;
+    }
 }

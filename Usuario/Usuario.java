@@ -27,10 +27,10 @@ public class Usuario {
     }
 
     public void pagarMulta(){
-        
+        this.multa = 0;
     }
     public void solicitarEmprestimo(){
-
+        
     }
     public void renovarEmprestimo(){
         renovacoesEmprestimo++;

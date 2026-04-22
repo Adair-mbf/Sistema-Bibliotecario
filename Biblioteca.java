@@ -32,4 +32,13 @@ public class Biblioteca {
         System.out.println("Usuário não encontrado!");
         return null;
     }
+    public Publicacao buscarPublicacao(int id){
+        for(int i = 0; i < publicacoes.size(); i++){
+            if(id == publicacoes.get(i).getId()){
+                return publicacoes.get(i);
+            }
+        }
+        System.out.println("Publicação não encontrada!");
+        return null;
+    }
 }
