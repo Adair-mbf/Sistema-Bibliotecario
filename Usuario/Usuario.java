@@ -1,6 +1,8 @@
 package Usuario;
 
 import Publicacao.Publicacao;
+
+import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 
 public class Usuario {
@@ -36,6 +38,7 @@ public class Usuario {
         if(this.emprestimos.isEmpty()){
             this.emprestimos.add(publicacao);
             System.out.println("Empréstimo realizado!");
+            publicacao.setDisponibilidade(false);
         }
     }
     public void renovarEmprestimo(Publicacao publicacao){
@@ -55,5 +58,9 @@ public class Usuario {
         }
         System.out.println("Empréstimo não encontrado!");
         return null;
+    }
+    public void devolverEmprestimo(Publicacao publicacao){
+        this.multa -= publicacao.getMulta();
+        publicacao.setDisponibilidade(true);
     }
 }

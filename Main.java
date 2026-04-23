@@ -20,6 +20,7 @@ public class Main {
             System.out.println("2 - Cadastrar usuário");
             System.out.println("3 - Realizar empréstimo para o usuário");
             System.out.println("4 - Renovar empréstimo de usuário");
+            System.out.println("5 - Devolver o empréstimo do usuário");
             System.out.println("0 - Sair");
             opcao = leitor.nextByte();
             leitor.nextLine();
@@ -154,7 +155,7 @@ public class Main {
                             System.out.println("Digite a quantidade de autores:");
                             int qntautores = leitor.nextInt();
                             leitor.nextLine();
-                            for(int i = 0; i < qntautores; i++){
+                            for(int j = 0; j < qntautores; j++){
                                 System.out.println("Digite o nome do autor:");
                                 String nome = leitor.nextLine();
                                 System.out.println("Digite a titulação do autor");
@@ -171,7 +172,7 @@ public class Main {
                             System.out.println("O artigo tem quantos autores:");
                             int qntautores = leitor.nextInt();
                             leitor.nextLine();
-                            for(int i = 0; i < qntautores; i++){
+                            for(int j = 0; j < qntautores; j++){
                                 System.out.println("Digite o nome do autor:");
                                 String nome = leitor.nextLine();
                                 System.out.println("Digite a titulação do autor:");
@@ -281,6 +282,25 @@ public class Main {
                         }
                     }
                     break;
+                }
+                case 5:{
+                    System.out.println("Digite o cpf do usuário:");
+                    String cpf = leitor.nextLine();
+                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    if(usuario != null){
+                        if(usuario.getEmprestimos().isEmpty()){
+                            System.out.println("O usuário não possui empréstimos ativos");
+                        }
+                        else{
+                            System.out.println("Digite o id da publicação que deseja renovar:");
+                            int id = leitor.nextInt();
+                            leitor.nextLine();
+                            Publicacao publicacao = usuario.buscarEmprestimos(id);
+                            if (publicacao != null) {
+                                usuario.devolverEmprestimo(publicacao);
+                            }
+                        }
+                    }
                 }
                 default:
                     System.out.println("Opção inválida!");
