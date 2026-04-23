@@ -211,7 +211,7 @@ public class Main {
                             System.out.println("Opção inválida");
                             break;
                     }
-                break;
+                    break;
                 }
                 case 2:
                     System.out.println("Qual o tipo de usuário?");
