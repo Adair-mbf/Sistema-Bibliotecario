@@ -7,6 +7,7 @@ import Publicacao.Livro;
 import Publicacao.Publicacao;
 import Publicacao.Tese;
 import Usuario.Usuario;
+import Usuario.UsuarioEspecial;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +18,8 @@ public class Main {
             System.out.println("O que deseja fazer?");
             System.out.println("1 - Cadastrar publicacao");
             System.out.println("2 - Cadastrar usuário");
-            System.out.println("3 - Renovar empréstimo de usuário");
+            System.out.println("3 - Realizar empréstimo para o usuário");
+            System.out.println("4 - Renovar empréstimo de usuário");
             System.out.println("0 - Sair");
             opcao = leitor.nextByte();
 
@@ -70,7 +72,7 @@ public class Main {
                                             System.out.println("Digite a quantidade de autores:");
                                             int qntdAutores = leitor.nextInt();
                                             ArrayList<Autor> autores1 = new ArrayList<>();
-                                            for(int j = 0; i < qntdAutores; j++){
+                                            for(int j = 0; j < qntdAutores; j++){
                                                 System.out.println("Digite o nome do autor:");
                                                 String nome = leitor.nextLine();
                                                 System.out.println("Digite a titulação do autor");
@@ -445,21 +447,43 @@ public class Main {
                             biblioteca.cadastrarUsuario(usuario);
                             break;
                         }
-                        case 2:
-
+                        case 2:{
+                            System.out.println("Digite o nome do usuário:");
+                            String nome = leitor.nextLine();
+                            System.out.println("Digite o telefone do usuário:");
+                            String telefone = leitor.nextLine();
+                            System.out.println("Digite o email do usuário:");
+                            String email = leitor.nextLine();
+                            System.out.println("Digite o cpf do usuário:");
+                            String cpf = leitor.nextLine();
+                            UsuarioEspecial usuario = new UsuarioEspecial(nome, telefone, email, cpf);
+                            biblioteca.cadastrarUsuario(usuario);
                             break;
+                        }
                         default:
                             System.out.println("Opção inválida!");
                             break;
                     }
                 case 3:{
-                    System.out.println("Digite o cpf do usuário");
+                    System.out.println("Digite o cpf do usuário:");
+                    String cpf = leitor.nextLine();
+                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    if(usuario != null){
+                        System.out.println("Digite o id da publicação:");
+                        int id = leitor.nextInt();
+                        Publicacao publicacao = biblioteca.buscarPublicacao(id);
+                        usuario.solicitarEmprestimo(publicacao);
+                    }
+                    break;
+                }
+                case 4:{
+                    System.out.println("Digite o cpf do usuário:");
                     String cpf = leitor.nextLine();
                     Usuario usuario = biblioteca.buscarUsuario(cpf);
                     if(usuario != null){
                         
                     }
-                break;
+                    break;
                 }
                 default:
                     System.out.println("Opção inválida!");

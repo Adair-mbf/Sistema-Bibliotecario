@@ -30,4 +30,8 @@ public abstract class Publicacao {
     public int getId() {
         return id;
     }
+    public double getMulta() {
+        return multa;
+    }
+    
 }

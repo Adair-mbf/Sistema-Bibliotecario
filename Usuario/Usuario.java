@@ -8,7 +8,7 @@ public class Usuario {
     private String telefone;
     private String email;
     private String cpf;
-    private ArrayList<Publicacao> emprestimos;
+    protected ArrayList<Publicacao> emprestimos;
     private int renovacoesEmprestimo;
     private double multa;
 
@@ -20,7 +20,7 @@ public class Usuario {
         this.cpf = cpf;
         this.emprestimos = new ArrayList<>();
         this.renovacoesEmprestimo = 0;
-        this.multa = 0;
+        this.multa = 0.0;
     }
     public String getCpf() {
         return cpf;
@@ -29,13 +29,19 @@ public class Usuario {
     public void pagarMulta(){
         this.multa = 0;
     }
-    public void solicitarEmprestimo(){
-        
+    public void solicitarEmprestimo(Publicacao publicacao){
+        if(this.emprestimos.isEmpty()){
+            this.emprestimos.add(publicacao);
+            System.out.println("Empréstimo realizado!");
+        }
     }
-    public void renovarEmprestimo(){
-        renovacoesEmprestimo++;
-        if (renovacoesEmprestimo > 3) {
-            
+    public void renovarEmprestimo(Publicacao publicacao){
+        this.renovacoesEmprestimo++;
+        if (this.renovacoesEmprestimo > 3) {
+            this.multa = publicacao.getMulta();
+            System.out.println("Limite de renovações excedido!");
+            System.out.println("Multa da publicação: " + publicacao.getMulta());
+            System.out.println("O usuário está devendo R$" + this.multa + " para a biblioteca");
         }
     }
 }
