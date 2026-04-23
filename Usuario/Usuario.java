@@ -25,7 +25,10 @@ public class Usuario {
     public String getCpf() {
         return cpf;
     }
-
+    
+    public ArrayList<Publicacao> getEmprestimos() {
+        return emprestimos;
+    }
     public void pagarMulta(){
         this.multa = 0;
     }
@@ -38,10 +41,19 @@ public class Usuario {
     public void renovarEmprestimo(Publicacao publicacao){
         this.renovacoesEmprestimo++;
         if (this.renovacoesEmprestimo > 3) {
-            this.multa = publicacao.getMulta();
+            this.multa += publicacao.getMulta();
             System.out.println("Limite de renovações excedido!");
             System.out.println("Multa da publicação: " + publicacao.getMulta());
             System.out.println("O usuário está devendo R$" + this.multa + " para a biblioteca");
         }
+    }
+    public Publicacao buscarEmprestimos(int id){
+        for(int i = 0; i < emprestimos.size(); i++){
+            if(id == emprestimos.get(i).getId()){
+                return emprestimos.get(i);
+            }
+        }
+        System.out.println("Empréstimo não encontrado!");
+        return null;
     }
 }

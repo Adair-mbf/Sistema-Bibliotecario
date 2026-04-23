@@ -481,7 +481,17 @@ public class Main {
                     String cpf = leitor.nextLine();
                     Usuario usuario = biblioteca.buscarUsuario(cpf);
                     if(usuario != null){
-                        
+                        if(usuario.getEmprestimos().isEmpty()){
+                            System.out.println("O usuário não possui empréstimos ativos");
+                        }
+                        else{
+                            System.out.println("Digite o id da publicação que deseja renovar:");
+                            int id = leitor.nextInt();
+                            Publicacao publicacao = usuario.buscarEmprestimos(id);
+                            if(publicacao != null){
+                                usuario.renovarEmprestimo(publicacao);
+                            }
+                        }
                     }
                     break;
                 }
