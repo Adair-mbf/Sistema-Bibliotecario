@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Publicacao.Artigo;
 import Publicacao.Autor;
 import Publicacao.Livro;
 import Publicacao.Publicacao;
+import Publicacao.Tese;
 import Usuario.Usuario;
 
 public class Main {
@@ -82,7 +84,7 @@ public class Main {
                                             String editora = leitor.nextLine();
                                             System.out.println("Digite o número da edição:");
                                             int edicao = leitor.nextInt();
-                                            Livro livroR = new Livro(tituloR, dataPublicacaoR, null, autores1, isbn, editora, edicao);
+                                            Livro livroR = new Livro(tituloR, dataPublicacaoR, autores1, isbn, editora, edicao);
                                             referencias.add(livroR);
                                             break;
                                         }
@@ -104,10 +106,32 @@ public class Main {
                                             }
                                             System.out.println("Digite o resumo do artigo:");
                                             String resumoR = leitor.nextLine();
+                                            Artigo artigoR = new Artigo(tituloR, dataPublicacaoR, autores1, resumoR);
+                                            referencias.add(artigoR);
                                             break;
                                         }
                                         case 3:
-
+                                            System.out.println("Digite o título da tese:");
+                                            String tituloT = leitor.nextLine();
+                                            System.out.println("Digite a data de publicação da tese:");
+                                            String dataPublicacaoT = leitor.nextLine();
+                                            System.out.println("Digite o nome do autor da tese:");
+                                            String nomeT = leitor.nextLine();
+                                            System.out.println("Digite a titulação do autor da Tese:");
+                                            String titulacaoT = leitor.nextLine();
+                                            Autor autorT = new Autor(nomeT, titulacaoT);
+                                            ArrayList<Autor> autoresT = new ArrayList<>();
+                                            autoresT.add(autorT);
+                                            System.out.println("Digite o número de páginas da Tese:");
+                                            int paginasT = leitor.nextInt();
+                                            System.out.println("Digite o resumo da Tese:");
+                                            String resumoT = leitor.nextLine();
+                                            System.out.println("Digite a data da defesa da Tese:");
+                                            String dataT = leitor.nextLine();
+                                            System.out.println("Digite o nome da instituição onde a Tese foi escrita:");
+                                            String instituicaoT = leitor.nextLine();
+                                            Tese teseR = new Tese(tituloT, dataPublicacaoT, autoresT, paginasT, resumoT, dataT, instituicaoT);
+                                            referencias.add(teseR);
                                             break;
                                         default:
                                             System.out.println("Opção inválida!");
@@ -135,16 +159,268 @@ public class Main {
                                 Autor autor = new Autor(nome, titulacao);
                                 autores.add(autor);
                             }
-                            Livro livro = new Livro(titulo, dataPublicacao, referencias, autores, isbn, editora, edicao);
+                            Livro livro = new Livro(titulo, dataPublicacao, referencias, autores, multa, isbn, editora, edicao);
                             biblioteca.cadastrarPublicacao(livro);
                             break;
                         }
-                        case 2:
-
+                        case 2:{
+                            System.out.println("Digite o título:");
+                            String titulo = leitor.nextLine();
+                            System.out.println("Digite a data de publicação:");
+                            String dataPublicacao = leitor.nextLine();
+                            System.out.println("Digite a quantidade de referencias:");
+                            int qntdReferencia = leitor.nextInt();
+                            ArrayList<Publicacao> referencias = new ArrayList<>();
+                            ArrayList<Autor> autores = new ArrayList<>();
+                            for(int i = 0; i < qntdReferencia; i++){
+                                System.out.println("A referência está presente na biblioteca?");
+                                boolean presente = leitor.nextBoolean();
+                                if(presente){
+                                    System.out.println("Digite o id da publicação:");
+                                    int id = leitor.nextInt();
+                                    Publicacao publicacao1 = biblioteca.buscarPublicacao(id);
+                                    if(publicacao1 != null){
+                                        referencias.add(publicacao1);
+                                    }
+                                    else{
+                                        i--;
+                                        continue;
+                                    }
+                                }
+                                else{
+                                    System.out.println("Qual o tipo da referência?");
+                                    System.out.println("1 - Livro");
+                                    System.out.println("2 - Artigo");
+                                    System.out.println("3 - Tese");
+                                    byte tipoRef = leitor.nextByte();
+                                    switch (tipoRef) {
+                                        case 1:{
+                                            System.out.println("Digite o título do livro:");
+                                            String tituloR = leitor.nextLine();
+                                            System.out.println("Digite a data da publicação do livro:");
+                                            String dataPublicacaoR = leitor.nextLine();
+                                            System.out.println("Digite a quantidade de autores:");
+                                            int qntdAutores = leitor.nextInt();
+                                            ArrayList<Autor> autores1 = new ArrayList<>();
+                                            for(int j = 0; i < qntdAutores; j++){
+                                                System.out.println("Digite o nome do autor:");
+                                                String nome = leitor.nextLine();
+                                                System.out.println("Digite a titulação do autor");
+                                                String titulacao = leitor.nextLine();
+                                                Autor autor1 = new Autor(nome, titulacao);
+                                                autores1.add(autor1);
+                                            }
+                                            System.out.println("Digite a isbn:");
+                                            String isbn = leitor.nextLine();
+                                            System.out.println("Digite o nome da editora:");
+                                            String editora = leitor.nextLine();
+                                            System.out.println("Digite o número da edição:");
+                                            int edicao = leitor.nextInt();
+                                            Livro livroR = new Livro(tituloR, dataPublicacaoR, autores1, isbn, editora, edicao);
+                                            referencias.add(livroR);
+                                            break;
+                                        }
+                                        case 2:{
+                                            System.out.println("Digite o título do artigo:");
+                                            String tituloR = leitor.nextLine();
+                                            System.out.println("Digite a data de publicação do artigo:");
+                                            String dataPublicacaoR = leitor.nextLine();
+                                            System.out.println("Digite a quantidade de autores:");
+                                            int qntdAutores = leitor.nextInt();
+                                            ArrayList<Autor> autores1 = new ArrayList<>();
+                                            for(int j = 0; j < qntdAutores; j++){
+                                                System.out.println("Digite o nome do autor:");
+                                                String nome = leitor.nextLine();
+                                                System.out.println("Digite a titulação do autor");
+                                                String titulacao = leitor.nextLine();
+                                                Autor autor1 = new Autor(nome, titulacao);
+                                                autores1.add(autor1);
+                                            }
+                                            System.out.println("Digite o resumo do artigo:");
+                                            String resumoR = leitor.nextLine();
+                                            Artigo artigoR = new Artigo(tituloR, dataPublicacaoR, autores1, resumoR);
+                                            referencias.add(artigoR);
+                                            break;
+                                        }
+                                        case 3:{
+                                            System.out.println("Digite o título da tese:");
+                                            String tituloT = leitor.nextLine();
+                                            System.out.println("Digite a data de publicação da tese:");
+                                            String dataPublicacaoT = leitor.nextLine();
+                                            System.out.println("Digite o nome do autor da tese:");
+                                            String nomeT = leitor.nextLine();
+                                            System.out.println("Digite a titulação do autor da Tese:");
+                                            String titulacaoT = leitor.nextLine();
+                                            Autor autorT = new Autor(nomeT, titulacaoT);
+                                            ArrayList<Autor> autoresT = new ArrayList<>();
+                                            autoresT.add(autorT);
+                                            System.out.println("Digite o número de páginas da Tese:");
+                                            int paginasT = leitor.nextInt();
+                                            System.out.println("Digite o resumo da Tese:");
+                                            String resumoT = leitor.nextLine();
+                                            System.out.println("Digite a data da defesa da Tese:");
+                                            String dataT = leitor.nextLine();
+                                            System.out.println("Digite o nome da instituição onde a Tese foi escrita:");
+                                            String instituicaoT = leitor.nextLine();
+                                            Tese teseR = new Tese(tituloT, dataPublicacaoT, autoresT, paginasT, resumoT, dataT, instituicaoT);
+                                            referencias.add(teseR);
+                                            break;
+                                        }
+                                        default:
+                                            System.out.println("Opção inválida!");
+                                            i--;
+                                            continue;
+                                    }
+                                }
+                            }
+                            System.out.println("O artigo tem quantos autores:");
+                            int qntautores = leitor.nextInt();
+                            for(int i = 0; i < qntautores; i++){
+                                System.out.println("Digite o nome do autor:");
+                                String nome = leitor.nextLine();
+                                System.out.println("Digite a titulação do autor:");
+                                String titulacao = leitor.nextLine();
+                                Autor autor = new Autor(nome, titulacao);
+                                autores.add(autor);
+                            }
+                            System.out.println("Digite o valor da multa:");
+                            double multa = leitor.nextDouble();
+                            System.out.println("Digite o resumo:");
+                            String resumo = leitor.nextLine();
+                            Artigo artigo = new Artigo(titulo, dataPublicacao, referencias, autores, multa, resumo);
+                            biblioteca.cadastrarPublicacao(artigo);
                             break;
-                        case 3:
-
+                        }
+                        case 3:{
+                            System.out.println("Digite o título da tese:");
+                            String titulo = leitor.nextLine();
+                            System.out.println("Digite a data de publicação da tese:");
+                            String dataPublicao = leitor.nextLine();
+                            System.out.println("A tese tem quantas referencias?");
+                            int qntdReferencia = leitor.nextInt();
+                            ArrayList<Publicacao> referencias = new ArrayList<>();
+                            ArrayList<Autor> autores = new ArrayList<>();
+                            for(int i = 0; i < qntdReferencia; i++){
+                                System.out.println("A referência está presente na biblioteca?");
+                                boolean presente = leitor.nextBoolean();
+                                if(presente){
+                                    System.out.println("Digite o id da publicação:");
+                                    int id = leitor.nextInt();
+                                    Publicacao publicacao1 = biblioteca.buscarPublicacao(id);
+                                    if(publicacao1 != null){
+                                        referencias.add(publicacao1);
+                                    }
+                                    else{
+                                        i--;
+                                        continue;
+                                    }
+                                }
+                                else{
+                                    System.out.println("Qual o tipo da referência?");
+                                    System.out.println("1 - Livro");
+                                    System.out.println("2 - Artigo");
+                                    System.out.println("3 - Tese");
+                                    byte tipoRef = leitor.nextByte();
+                                    switch (tipoRef) {
+                                        case 1:{
+                                            System.out.println("Digite o título do livro:");
+                                            String tituloR = leitor.nextLine();
+                                            System.out.println("Digite a data da publicação do livro:");
+                                            String dataPublicacaoR = leitor.nextLine();
+                                            System.out.println("Digite a quantidade de autores:");
+                                            int qntdAutores = leitor.nextInt();
+                                            ArrayList<Autor> autores1 = new ArrayList<>();
+                                            for(int j = 0; i < qntdAutores; j++){
+                                                System.out.println("Digite o nome do autor:");
+                                                String nome = leitor.nextLine();
+                                                System.out.println("Digite a titulação do autor");
+                                                String titulacao = leitor.nextLine();
+                                                Autor autor1 = new Autor(nome, titulacao);
+                                                autores1.add(autor1);
+                                            }
+                                            System.out.println("Digite a isbn:");
+                                            String isbn = leitor.nextLine();
+                                            System.out.println("Digite o nome da editora:");
+                                            String editora = leitor.nextLine();
+                                            System.out.println("Digite o número da edição:");
+                                            int edicao = leitor.nextInt();
+                                            Livro livroR = new Livro(tituloR, dataPublicacaoR, autores1, isbn, editora, edicao);
+                                            referencias.add(livroR);
+                                            break;
+                                        }
+                                        case 2:{
+                                            System.out.println("Digite o título do artigo:");
+                                            String tituloR = leitor.nextLine();
+                                            System.out.println("Digite a data de publicação do artigo:");
+                                            String dataPublicacaoR = leitor.nextLine();
+                                            System.out.println("Digite a quantidade de autores:");
+                                            int qntdAutores = leitor.nextInt();
+                                            ArrayList<Autor> autores1 = new ArrayList<>();
+                                            for(int j = 0; j < qntdAutores; j++){
+                                                System.out.println("Digite o nome do autor:");
+                                                String nome = leitor.nextLine();
+                                                System.out.println("Digite a titulação do autor");
+                                                String titulacao = leitor.nextLine();
+                                                Autor autor1 = new Autor(nome, titulacao);
+                                                autores1.add(autor1);
+                                            }
+                                            System.out.println("Digite o resumo do artigo:");
+                                            String resumoR = leitor.nextLine();
+                                            Artigo artigoR = new Artigo(tituloR, dataPublicacaoR, autores1, resumoR);
+                                            referencias.add(artigoR);
+                                            break;
+                                        }
+                                        case 3:{
+                                            System.out.println("Digite o título da tese:");
+                                            String tituloT = leitor.nextLine();
+                                            System.out.println("Digite a data de publicação da tese:");
+                                            String dataPublicacaoT = leitor.nextLine();
+                                            System.out.println("Digite o nome do autor da tese:");
+                                            String nomeT = leitor.nextLine();
+                                            System.out.println("Digite a titulação do autor da Tese:");
+                                            String titulacaoT = leitor.nextLine();
+                                            Autor autorT = new Autor(nomeT, titulacaoT);
+                                            ArrayList<Autor> autoresT = new ArrayList<>();
+                                            autoresT.add(autorT);
+                                            System.out.println("Digite o número de páginas da Tese:");
+                                            int paginasT = leitor.nextInt();
+                                            System.out.println("Digite o resumo da Tese:");
+                                            String resumoT = leitor.nextLine();
+                                            System.out.println("Digite a data da defesa da Tese:");
+                                            String dataT = leitor.nextLine();
+                                            System.out.println("Digite o nome da instituição onde a Tese foi escrita:");
+                                            String instituicaoT = leitor.nextLine();
+                                            Tese teseR = new Tese(tituloT, dataPublicacaoT, autoresT, paginasT, resumoT, dataT, instituicaoT);
+                                            referencias.add(teseR);
+                                            break;
+                                        }
+                                        default:
+                                            System.out.println("Opção inválida!");
+                                            i--;
+                                            continue;
+                                    }
+                                }
+                            }
+                            System.out.println("Digite o nome do autor:");
+                            String nome = leitor.nextLine();
+                            System.out.println("Digite a titulação do autor:");
+                            String titulacao = leitor.nextLine();
+                            Autor autor = new Autor(nome, titulacao);
+                            autores.add(autor);
+                            System.out.println("Digite o valor da multa:");
+                            double multa = leitor.nextDouble();
+                            System.out.println("Digite o número de páginas:");
+                            int numeroPaginas = leitor.nextInt();
+                            System.out.println("Digite o resumo:");
+                            String resumo = leitor.nextLine();
+                            System.out.println("Digite a data da defesa da tese:");
+                            String dataDefesa = leitor.nextLine();
+                            System.out.println("Digite o nome da instituição da tese:");
+                            String instituicao = leitor.nextLine();
+                            Tese tese = new Tese(titulo, dataPublicao, referencias, autores, multa, numeroPaginas, resumo, dataDefesa, instituicao);
+                            biblioteca.cadastrarPublicacao(tese);
                             break;
+                        }
                         default:
                             System.out.println("Opção inválida");
                             break;

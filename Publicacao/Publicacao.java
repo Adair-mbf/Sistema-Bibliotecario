@@ -19,7 +19,12 @@ public abstract class Publicacao {
         this.autores = autores;
         this.multa = multa;
     }
-
+    
+    public Publicacao(String titulo, String dataPublicacao, ArrayList<Autor> autores) {
+        this.titulo = titulo;
+        this.dataPublicacao = dataPublicacao;
+        this.autores = autores;
+    }
     public int getId() {
         return id;
     }
