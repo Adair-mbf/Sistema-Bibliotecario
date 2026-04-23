@@ -2,7 +2,6 @@ package Usuario;
 
 import Publicacao.Publicacao;
 
-import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 
 public class Usuario {
