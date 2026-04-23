@@ -19,11 +19,13 @@ public abstract class Publicacao {
         this.autores = autores;
         this.multa = multa;
     }
-    
     public Publicacao(String titulo, String dataPublicacao, ArrayList<Autor> autores) {
+        this.id = geradorId++; // IMPORTANTE: mantém a contagem global correta
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;
         this.autores = autores;
+        this.referencias = new ArrayList<>(); // Inicializa para evitar NullPointerException
+        this.multa = 0.0;
     }
     public int getId() {
         return id;

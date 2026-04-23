@@ -330,7 +330,7 @@ public class Main {
                                             System.out.println("Digite a quantidade de autores:");
                                             int qntdAutores = leitor.nextInt();
                                             ArrayList<Autor> autores1 = new ArrayList<>();
-                                            for(int j = 0; i < qntdAutores; j++){
+                                            for(int j = 0; j < qntdAutores; j++){
                                                 System.out.println("Digite o nome do autor:");
                                                 String nome = leitor.nextLine();
                                                 System.out.println("Digite a titulação do autor");
