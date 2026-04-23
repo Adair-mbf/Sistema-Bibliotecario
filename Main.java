@@ -22,6 +22,7 @@ public class Main {
             System.out.println("4 - Renovar empréstimo de usuário");
             System.out.println("0 - Sair");
             opcao = leitor.nextByte();
+            leitor.nextLine();
 
             switch (opcao) {
                 case 0:
@@ -34,13 +35,16 @@ public class Main {
                     String dataPublicacao = leitor.nextLine();
                     System.out.println("Digite a quantidade de referencias:");
                     int qntdReferencia = leitor.nextInt();
+                    leitor.nextLine();
                     ArrayList<Publicacao> referencias = new ArrayList<>();
                     for(int i = 0; i < qntdReferencia; i++){
                         System.out.println("A referência está presente na biblioteca?");
                         boolean presente = leitor.nextBoolean();
+                        leitor.nextLine();
                         if(presente){
                             System.out.println("Digite o id da publicação:");
                             int id = leitor.nextInt();
+                            leitor.nextLine();
                             Publicacao publicacao1 = biblioteca.buscarPublicacao(id);
                             if(publicacao1 != null){
                                 referencias.add(publicacao1);
@@ -60,10 +64,12 @@ public class Main {
                             System.out.println("2 - Artigo");
                             System.out.println("3 - Tese");
                             byte tipoRef = leitor.nextByte();
+                            leitor.nextLine();
                             switch (tipoRef) {
                                 case 1:{
                                     System.out.println("Digite a quantidade de autores:");
                                     int qntdAutores = leitor.nextInt();
+                                    leitor.nextLine();
                                     ArrayList<Autor> autores1 = new ArrayList<>();
                                     for(int j = 0; j < qntdAutores; j++){
                                         System.out.println("Digite o nome do autor:");
@@ -79,6 +85,7 @@ public class Main {
                                     String editora = leitor.nextLine();
                                     System.out.println("Digite o número da edição:");
                                     int edicao = leitor.nextInt();
+                                    leitor.nextLine();
                                     Livro livroR = new Livro(tituloR, dataPublicacaoR, autores1, isbn, editora, edicao);
                                     referencias.add(livroR);
                                     break;
@@ -86,6 +93,7 @@ public class Main {
                                 case 2:{
                                     System.out.println("Digite a quantidade de autores:");
                                     int qntdAutores = leitor.nextInt();
+                                    leitor.nextLine();
                                     ArrayList<Autor> autores1 = new ArrayList<>();
                                     for(int j = 0; j < qntdAutores; j++){
                                         System.out.println("Digite o nome do autor:");
@@ -99,6 +107,7 @@ public class Main {
                                     String resumoR = leitor.nextLine();
                                     Artigo artigoR = new Artigo(tituloR, dataPublicacaoR, autores1, resumoR);
                                     referencias.add(artigoR);
+                                    break;
                                 }
                                 case 3:{
                                     System.out.println("Digite o nome do autor da tese:");
@@ -110,6 +119,7 @@ public class Main {
                                     autoresT.add(autorT);
                                     System.out.println("Digite o número de páginas da Tese:");
                                     int paginasT = leitor.nextInt();
+                                    leitor.nextLine();
                                     System.out.println("Digite o resumo da Tese:");
                                     String resumoT = leitor.nextLine();
                                     System.out.println("Digite a data da defesa da Tese:");
@@ -118,16 +128,19 @@ public class Main {
                                     String instituicaoT = leitor.nextLine();
                                     Tese teseR = new Tese(tituloR, dataPublicacaoR, autoresT, paginasT, resumoT, dataT, instituicaoT);
                                     referencias.add(teseR);
+                                    break;
                                 }
                             }
                         }
                     System.out.println("Digite o valor da multa:");
                     double multa = leitor.nextDouble();
+                    leitor.nextLine();
                     System.out.println("Qual o tipo de publicação?");
                     System.out.println("1 - Livro");
                     System.out.println("2 - Artigo");
                     System.out.println("3 - Tese");
                     byte tipoPub = leitor.nextByte();
+                    leitor.nextLine();
                     switch (tipoPub) {
                         case 1:{
                             System.out.println("Digite a isbn:");
@@ -136,9 +149,11 @@ public class Main {
                             String editora = leitor.nextLine();
                             System.out.println("Digite o número da edição:");
                             int edicao = leitor.nextInt();
+                            leitor.nextLine();
                             ArrayList<Autor> autores = new ArrayList<>();
                             System.out.println("Digite a quantidade de autores:");
                             int qntautores = leitor.nextInt();
+                            leitor.nextLine();
                             for(int i = 0; i < qntautores; i++){
                                 System.out.println("Digite o nome do autor:");
                                 String nome = leitor.nextLine();
@@ -155,6 +170,7 @@ public class Main {
                             ArrayList<Autor> autores = new ArrayList<>();
                             System.out.println("O artigo tem quantos autores:");
                             int qntautores = leitor.nextInt();
+                            leitor.nextLine();
                             for(int i = 0; i < qntautores; i++){
                                 System.out.println("Digite o nome do autor:");
                                 String nome = leitor.nextLine();
@@ -179,6 +195,7 @@ public class Main {
                             autores.add(autor);
                             System.out.println("Digite o número de páginas:");
                             int numeroPaginas = leitor.nextInt();
+                            leitor.nextLine();
                             System.out.println("Digite o resumo:");
                             String resumo = leitor.nextLine();
                             System.out.println("Digite a data da defesa da tese:");
@@ -200,6 +217,7 @@ public class Main {
                     System.out.println("1 - Usuário comum");
                     System.out.println("2 - Usuário especial");
                     byte tipoUsu = leitor.nextByte();
+                    leitor.nextLine();
                     switch (tipoUsu) {
                         case 1:{
                             System.out.println("Digite o nome do usuário:");
@@ -238,6 +256,7 @@ public class Main {
                     if(usuario != null){
                         System.out.println("Digite o id da publicação:");
                         int id = leitor.nextInt();
+                        leitor.nextLine();
                         Publicacao publicacao = biblioteca.buscarPublicacao(id);
                         usuario.solicitarEmprestimo(publicacao);
                     }
@@ -254,6 +273,7 @@ public class Main {
                         else{
                             System.out.println("Digite o id da publicação que deseja renovar:");
                             int id = leitor.nextInt();
+                            leitor.nextLine();
                             Publicacao publicacao = usuario.buscarEmprestimos(id);
                             if(publicacao != null){
                                 usuario.renovarEmprestimo(publicacao);
