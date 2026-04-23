@@ -60,7 +60,13 @@ public class Usuario {
         return null;
     }
     public void devolverEmprestimo(Publicacao publicacao){
-        this.multa -= publicacao.getMulta();
+        this.emprestimos.remove(publicacao);
+        this.renovacoesEmprestimo = 0;
+        this.multa = 0;
         publicacao.setDisponibilidade(true);
     }
+    public void setRenovacoesEmprestimo(int renovacoesEmprestimo) {
+        this.renovacoesEmprestimo = renovacoesEmprestimo;
+    }
+    
 }

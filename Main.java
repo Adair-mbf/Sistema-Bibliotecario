@@ -259,7 +259,12 @@ public class Main {
                         int id = leitor.nextInt();
                         leitor.nextLine();
                         Publicacao publicacao = biblioteca.buscarPublicacao(id);
-                        usuario.solicitarEmprestimo(publicacao);
+                        if(publicacao.isDisponibilidade()){
+                            usuario.solicitarEmprestimo(publicacao);
+                        }
+                        else{
+                            System.out.println("Publicação indisponível!");
+                        }
                     }
                     break;
                 }
@@ -301,6 +306,7 @@ public class Main {
                             }
                         }
                     }
+                    break;
                 }
                 default:
                     System.out.println("Opção inválida!");
