@@ -9,15 +9,15 @@ public class UsuarioEspecial extends Usuario{
     }
     @Override
     public void solicitarEmprestimo(Publicacao publicacao){
-        this.emprestimos.add(publicacao);
+        getEmprestimos().add(publicacao);
         publicacao.setDisponibilidade(false);
         System.out.println("Empréstimo realizado!");
     }
     @Override
     public void devolverEmprestimo(Publicacao publicacao){
-        this.emprestimos.remove(publicacao);
+        getEmprestimos().remove(publicacao);
         publicacao.setDisponibilidade(true);
-        if(this.emprestimos.isEmpty()){
+        if(getEmprestimos().isEmpty()){
             setRenovacoesEmprestimo(0);
         }
     }

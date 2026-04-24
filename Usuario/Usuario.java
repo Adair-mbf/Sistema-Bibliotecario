@@ -9,7 +9,7 @@ public class Usuario {
     private String telefone;
     private String email;
     private String cpf;
-    protected ArrayList<Publicacao> emprestimos;
+    private ArrayList<Publicacao> emprestimos;
     private int renovacoesEmprestimo;
     private double multa;
 
