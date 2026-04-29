@@ -136,12 +136,7 @@ public class Main {
                     System.out.println("Digite o valor da multa:");
                     double multa = leitor.nextDouble();
                     leitor.nextLine();
-                    System.out.println("Qual o tipo de publicação?");
-                    System.out.println("1 - Livro");
-                    System.out.println("2 - Artigo");
-                    System.out.println("3 - Tese");
-                    byte tipoPub = leitor.nextByte();
-                    leitor.nextLine();
+                    byte tipoPub = tipoPub(leitor);
                     switch (tipoPub) {
                         case 1:{
                             System.out.println("Digite a isbn:");
@@ -214,6 +209,14 @@ public class Main {
                     break;
                 }
                 case 2:
+                    System.out.println("Digite o nome do usuário:");
+                    String nome = leitor.nextLine();
+                    System.out.println("Digite o telefone do usuário:");
+                    String telefone = leitor.nextLine();
+                    System.out.println("Digite o email do usuário:");
+                    String email = leitor.nextLine();
+                    System.out.println("Digite o cpf do usuário:");
+                    String cpf = leitor.nextLine();
                     System.out.println("Qual o tipo de usuário?");
                     System.out.println("1 - Usuário comum");
                     System.out.println("2 - Usuário especial");
@@ -221,27 +224,11 @@ public class Main {
                     leitor.nextLine();
                     switch (tipoUsu) {
                         case 1:{
-                            System.out.println("Digite o nome do usuário:");
-                            String nome = leitor.nextLine();
-                            System.out.println("Digite o telefone do usuário:");
-                            String telefone = leitor.nextLine();
-                            System.out.println("Digite o email do usuário:");
-                            String email = leitor.nextLine();
-                            System.out.println("Digite o cpf do usuário:");
-                            String cpf = leitor.nextLine();
                             Usuario usuario = new Usuario(nome, telefone, email, cpf);
                             biblioteca.cadastrarUsuario(usuario);
                             break;
                         }
                         case 2:{
-                            System.out.println("Digite o nome do usuário:");
-                            String nome = leitor.nextLine();
-                            System.out.println("Digite o telefone do usuário:");
-                            String telefone = leitor.nextLine();
-                            System.out.println("Digite o email do usuário:");
-                            String email = leitor.nextLine();
-                            System.out.println("Digite o cpf do usuário:");
-                            String cpf = leitor.nextLine();
                             UsuarioEspecial usuario = new UsuarioEspecial(nome, telefone, email, cpf);
                             biblioteca.cadastrarUsuario(usuario);
                             break;
@@ -251,9 +238,7 @@ public class Main {
                             break;
                     }
                 case 3:{
-                    System.out.println("Digite o cpf do usuário:");
-                    String cpf = leitor.nextLine();
-                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    Usuario usuario = interacaoCpf(leitor, biblioteca);
                     if(usuario != null){
                         System.out.println("Digite o id da publicação:");
                         int id = leitor.nextInt();
@@ -269,9 +254,7 @@ public class Main {
                     break;
                 }
                 case 4:{
-                    System.out.println("Digite o cpf do usuário:");
-                    String cpf = leitor.nextLine();
-                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    Usuario usuario = interacaoCpf(leitor, biblioteca);
                     if(usuario != null){
                         if(usuario.getEmprestimos().isEmpty()){
                             System.out.println("O usuário não possui empréstimos ativos");
@@ -289,9 +272,7 @@ public class Main {
                     break;
                 }
                 case 5:{
-                    System.out.println("Digite o cpf do usuário:");
-                    String cpf = leitor.nextLine();
-                    Usuario usuario = biblioteca.buscarUsuario(cpf);
+                    Usuario usuario = interacaoCpf(leitor, biblioteca);
                     if(usuario != null){
                         if(usuario.getEmprestimos().isEmpty()){
                             System.out.println("O usuário não possui empréstimos ativos");
@@ -315,5 +296,19 @@ public class Main {
         }while(opcao != 0);
 
         leitor.close();
+    }
+    private static Usuario interacaoCpf(Scanner leitor, Biblioteca biblioteca){
+        System.out.println("Digite o cpf do usuário:");
+        String cpf = leitor.nextLine();
+        return biblioteca.buscarUsuario(cpf);
+    }
+    private static byte tipoPub(Scanner leitor){
+        System.out.println("Qual o tipo de publicação?");
+        System.out.println("1 - Livro");
+        System.out.println("2 - Artigo");
+        System.out.println("3 - Tese");
+        byte tipoPub = leitor.nextByte();
+        leitor.nextLine();
+        return tipoPub;
     }
 }
