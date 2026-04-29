@@ -68,18 +68,7 @@ public class Main {
                             leitor.nextLine();
                             switch (tipoRef) {
                                 case 1:{
-                                    System.out.println("Digite a quantidade de autores:");
-                                    int qntdAutores = leitor.nextInt();
-                                    leitor.nextLine();
-                                    ArrayList<Autor> autores1 = new ArrayList<>();
-                                    for(int j = 0; j < qntdAutores; j++){
-                                        System.out.println("Digite o nome do autor:");
-                                        String nome = leitor.nextLine();
-                                        System.out.println("Digite a titulação do autor");
-                                        String titulacao = leitor.nextLine();
-                                        Autor autor1 = new Autor(nome, titulacao);
-                                        autores1.add(autor1);
-                                    }
+                                    ArrayList<Autor> autores1 = interacaoAutor(leitor);
                                     System.out.println("Digite a isbn:");
                                     String isbn = leitor.nextLine();
                                     System.out.println("Digite o nome da editora:");
@@ -92,18 +81,7 @@ public class Main {
                                     break;
                                 }
                                 case 2:{
-                                    System.out.println("Digite a quantidade de autores:");
-                                    int qntdAutores = leitor.nextInt();
-                                    leitor.nextLine();
-                                    ArrayList<Autor> autores1 = new ArrayList<>();
-                                    for(int j = 0; j < qntdAutores; j++){
-                                        System.out.println("Digite o nome do autor:");
-                                        String nome = leitor.nextLine();
-                                        System.out.println("Digite a titulação do autor");
-                                        String titulacao = leitor.nextLine();
-                                        Autor autor1 = new Autor(nome, titulacao);
-                                        autores1.add(autor1);
-                                    }
+                                    ArrayList<Autor> autores1 = interacaoAutor(leitor);
                                     System.out.println("Digite o resumo do artigo:");
                                     String resumoR = leitor.nextLine();
                                     Artigo artigoR = new Artigo(tituloR, dataPublicacaoR, autores1, resumoR);
@@ -146,35 +124,13 @@ public class Main {
                             System.out.println("Digite o número da edição:");
                             int edicao = leitor.nextInt();
                             leitor.nextLine();
-                            ArrayList<Autor> autores = new ArrayList<>();
-                            System.out.println("Digite a quantidade de autores:");
-                            int qntautores = leitor.nextInt();
-                            leitor.nextLine();
-                            for(int j = 0; j < qntautores; j++){
-                                System.out.println("Digite o nome do autor:");
-                                String nome = leitor.nextLine();
-                                System.out.println("Digite a titulação do autor");
-                                String titulacao = leitor.nextLine();
-                                Autor autor = new Autor(nome, titulacao);
-                                autores.add(autor);
-                            }
+                            ArrayList<Autor> autores = interacaoAutor(leitor);   
                             Livro livro = new Livro(titulo, dataPublicacao, referencias, autores, multa, isbn, editora, edicao);
                             biblioteca.cadastrarPublicacao(livro);
                             break;
                         }
                         case 2:{
-                            ArrayList<Autor> autores = new ArrayList<>();
-                            System.out.println("O artigo tem quantos autores:");
-                            int qntautores = leitor.nextInt();
-                            leitor.nextLine();
-                            for(int j = 0; j < qntautores; j++){
-                                System.out.println("Digite o nome do autor:");
-                                String nome = leitor.nextLine();
-                                System.out.println("Digite a titulação do autor:");
-                                String titulacao = leitor.nextLine();
-                                Autor autor = new Autor(nome, titulacao);
-                                autores.add(autor);
-                            }
+                            ArrayList<Autor> autores = interacaoAutor(leitor);
                             System.out.println("Digite o resumo:");
                             String resumo = leitor.nextLine();
                             Artigo artigo = new Artigo(titulo, dataPublicacao, referencias, autores, multa, resumo);
@@ -310,5 +266,20 @@ public class Main {
         byte tipoPub = leitor.nextByte();
         leitor.nextLine();
         return tipoPub;
+    }
+    private static ArrayList<Autor> interacaoAutor(Scanner leitor){
+        System.out.println("Digite a quantidade de autores:");
+        int qntdAutores = leitor.nextInt();
+        leitor.nextLine();
+        ArrayList<Autor> autores1 = new ArrayList<>();
+        for(int j = 0; j < qntdAutores; j++){
+            System.out.println("Digite o nome do autor:");
+            String nome = leitor.nextLine();
+            System.out.println("Digite a titulação do autor");
+            String titulacao = leitor.nextLine();
+            Autor autor1 = new Autor(nome, titulacao);
+            autores1.add(autor1);
+        }
+        return autores1;
     }
 }
