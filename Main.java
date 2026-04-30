@@ -52,7 +52,6 @@ public class Main {
                                 referencias.add(publicacao1);
                             }
                             else{
-                                System.out.println("Publicação não encontrada!");
                                 i--;
                                 continue;
                             }
