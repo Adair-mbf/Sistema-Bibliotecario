@@ -39,11 +39,14 @@ public class Usuario {
         this.multa += valor;
     }
     public void solicitarEmprestimo(Publicacao publicacao){
-        if(this.emprestimos.isEmpty()){
+        if(this.emprestimos.isEmpty() && publicacao.isDisponibilidade()){
             Emprestimo emprestimo = new Emprestimo(this, publicacao);
             this.emprestimos.add(emprestimo);
             System.out.println("Empréstimo realizado!");
             publicacao.setDisponibilidade(false);
+        }
+        else{
+            System.out.println("Empréstimo não pode ser realizado!");
         }
     }
     public Emprestimo buscarEmprestimos(int id){

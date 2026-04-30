@@ -10,15 +10,14 @@ public class UsuarioEspecial extends Usuario{
     }
     @Override
     public void solicitarEmprestimo(Publicacao publicacao){
-        Emprestimo emprestimo = new Emprestimo(this, publicacao);
-        getEmprestimos().add(emprestimo);
-        publicacao.setDisponibilidade(false);
-        System.out.println("Empréstimo realizado!");
-    }
-    @Override
-    public void devolverEmprestimo(Emprestimo emprestimo){
-        getEmprestimos().remove(emprestimo);
-        emprestimo.getPublicacao().setDisponibilidade(true);
-        System.out.println("Devolução realizada!");
+        if(publicacao.isDisponibilidade()){
+            Emprestimo emprestimo = new Emprestimo(this, publicacao);
+            getEmprestimos().add(emprestimo);
+            publicacao.setDisponibilidade(false);
+            System.out.println("Empréstimo realizado!");
+        }
+        else{
+            System.out.println("Publicação indisponível!");
+        }
     }
 }

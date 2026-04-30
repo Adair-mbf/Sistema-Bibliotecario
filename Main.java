@@ -201,12 +201,7 @@ public class Main {
                         int id = leitor.nextInt();
                         leitor.nextLine();
                         Publicacao publicacao = biblioteca.buscarPublicacao(id);
-                        if(publicacao.isDisponibilidade()){
-                            usuario.solicitarEmprestimo(publicacao);
-                        }
-                        else{
-                            System.out.println("Publicação indisponível!");
-                        }
+                        usuario.solicitarEmprestimo(publicacao);
                     }
                     break;
                 }
