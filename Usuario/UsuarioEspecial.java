@@ -1,6 +1,7 @@
 package Usuario;
 
 import Publicacao.Publicacao;
+import Servico.Emprestimo;
 
 public class UsuarioEspecial extends Usuario{
     
@@ -9,16 +10,15 @@ public class UsuarioEspecial extends Usuario{
     }
     @Override
     public void solicitarEmprestimo(Publicacao publicacao){
-        getEmprestimos().add(publicacao);
+        Emprestimo emprestimo = new Emprestimo(this, publicacao);
+        getEmprestimos().add(emprestimo);
         publicacao.setDisponibilidade(false);
         System.out.println("Empréstimo realizado!");
     }
     @Override
-    public void devolverEmprestimo(Publicacao publicacao){
-        getEmprestimos().remove(publicacao);
-        publicacao.setDisponibilidade(true);
-        if(getEmprestimos().isEmpty()){
-            setRenovacoesEmprestimo(0);
-        }
+    public void devolverEmprestimo(Emprestimo emprestimo){
+        getEmprestimos().remove(emprestimo);
+        emprestimo.getPublicacao().setDisponibilidade(true);
+        System.out.println("Devolução realizada!");
     }
 }

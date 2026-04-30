@@ -11,7 +11,6 @@ public class Usuario {
     private String email;
     private String cpf;
     private ArrayList<Emprestimo> emprestimos;
-    private int renovacoesEmprestimo;
     private double multa;
 
     
@@ -59,9 +58,6 @@ public class Usuario {
     public void devolverEmprestimo(Emprestimo emprestimo){
         this.emprestimos.remove(emprestimo);
         emprestimo.getPublicacao().setDisponibilidade(true);
-    }
-    public void setRenovacoesEmprestimo(int renovacoesEmprestimo) {
-        this.renovacoesEmprestimo = renovacoesEmprestimo;
-    }
-    
+        System.out.println("Devolução realizada!");
+    }   
 }

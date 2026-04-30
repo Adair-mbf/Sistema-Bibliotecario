@@ -6,6 +6,7 @@ import Publicacao.Autor;
 import Publicacao.Livro;
 import Publicacao.Publicacao;
 import Publicacao.Tese;
+import Servico.Emprestimo;
 import Usuario.Usuario;
 import Usuario.UsuarioEspecial;
 
@@ -219,9 +220,9 @@ public class Main {
                             System.out.println("Digite o id da publicação que deseja renovar:");
                             int id = leitor.nextInt();
                             leitor.nextLine();
-                            Publicacao publicacao = usuario.buscarEmprestimos(id);
-                            if(publicacao != null){
-                                usuario.renovarEmprestimo(publicacao);
+                            Emprestimo emprestimo = usuario.buscarEmprestimos(id);
+                            if(emprestimo != null){
+                                emprestimo.renovar();
                             }
                         }
                     }
@@ -237,9 +238,9 @@ public class Main {
                             System.out.println("Digite o id da publicação que deseja devolver:");
                             int id = leitor.nextInt();
                             leitor.nextLine();
-                            Publicacao publicacao = usuario.buscarEmprestimos(id);
-                            if (publicacao != null) {
-                                usuario.devolverEmprestimo(publicacao);
+                            Emprestimo emprestimo = usuario.buscarEmprestimos(id);
+                            if (emprestimo != null) {
+                                usuario.devolverEmprestimo(emprestimo);
                             }
                         }
                     }
