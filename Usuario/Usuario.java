@@ -1,6 +1,7 @@
 package Usuario;
 
 import Publicacao.Publicacao;
+import Servico.Emprestimo;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class Usuario {
     private String telefone;
     private String email;
     private String cpf;
-    private ArrayList<Publicacao> emprestimos;
+    private ArrayList<Emprestimo> emprestimos;
     private int renovacoesEmprestimo;
     private double multa;
 
@@ -20,49 +21,44 @@ public class Usuario {
         this.email = email;
         this.cpf = cpf;
         this.emprestimos = new ArrayList<>();
-        this.renovacoesEmprestimo = 0;
         this.multa = 0.0;
     }
     public String getCpf() {
         return cpf;
     }
     
-    public ArrayList<Publicacao> getEmprestimos() {
+    public double getMulta() {
+        return multa;
+    }
+    public ArrayList<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
     public void pagarMulta(){
         this.multa = 0;
     }
+    public void adicionarMulta(double valor) {
+        this.multa += valor;
+    }
     public void solicitarEmprestimo(Publicacao publicacao){
         if(this.emprestimos.isEmpty()){
-            this.emprestimos.add(publicacao);
+            Emprestimo emprestimo = new Emprestimo(this, publicacao);
+            this.emprestimos.add(emprestimo);
             System.out.println("Empréstimo realizado!");
             publicacao.setDisponibilidade(false);
         }
     }
-    public void renovarEmprestimo(Publicacao publicacao){
-        this.renovacoesEmprestimo++;
-        if (this.renovacoesEmprestimo > 3) {
-            this.multa += publicacao.getMulta();
-            System.out.println("Limite de renovações excedido!");
-            System.out.println("Multa da publicação: " + publicacao.getMulta());
-            System.out.println("O usuário está devendo R$" + this.multa + " para a biblioteca");
-        }
-    }
-    public Publicacao buscarEmprestimos(int id){
-        for(int i = 0; i < emprestimos.size(); i++){
-            if(id == emprestimos.get(i).getId()){
+    public Emprestimo buscarEmprestimos(int id){
+        for(int i = 0; i < this.emprestimos.size(); i++){
+            if(id == emprestimos.get(i).getPublicacao().getId()){
                 return emprestimos.get(i);
             }
         }
         System.out.println("Empréstimo não encontrado!");
         return null;
     }
-    public void devolverEmprestimo(Publicacao publicacao){
-        this.emprestimos.remove(publicacao);
-        this.renovacoesEmprestimo = 0;
-        this.multa = 0;
-        publicacao.setDisponibilidade(true);
+    public void devolverEmprestimo(Emprestimo emprestimo){
+        this.emprestimos.remove(emprestimo);
+        emprestimo.getPublicacao().setDisponibilidade(true);
     }
     public void setRenovacoesEmprestimo(int renovacoesEmprestimo) {
         this.renovacoesEmprestimo = renovacoesEmprestimo;

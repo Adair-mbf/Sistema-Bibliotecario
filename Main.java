@@ -234,7 +234,7 @@ public class Main {
                             System.out.println("O usuário não possui empréstimos ativos");
                         }
                         else{
-                            System.out.println("Digite o id da publicação que deseja renovar:");
+                            System.out.println("Digite o id da publicação que deseja devolver:");
                             int id = leitor.nextInt();
                             leitor.nextLine();
                             Publicacao publicacao = usuario.buscarEmprestimos(id);
