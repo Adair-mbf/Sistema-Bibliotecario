@@ -201,7 +201,9 @@ public class Main {
                         int id = leitor.nextInt();
                         leitor.nextLine();
                         Publicacao publicacao = biblioteca.buscarPublicacao(id);
-                        usuario.solicitarEmprestimo(publicacao);
+                        if (publicacao != null) {
+                            usuario.solicitarEmprestimo(publicacao);
+                        }
                     }
                     break;
                 }
