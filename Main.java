@@ -166,7 +166,7 @@ public class Main {
                     }
                     break;
                 }
-                case 2:
+                case 2:{
                     System.out.println("Digite o nome do usuário:");
                     String nome = leitor.nextLine();
                     System.out.println("Digite o telefone do usuário:");
@@ -195,6 +195,8 @@ public class Main {
                             System.out.println("Opção inválida!");
                             break;
                     }
+                    break;
+                }
                 case 3:{
                     Usuario usuario = interacaoCpf(leitor, biblioteca);
                     if(usuario != null){
